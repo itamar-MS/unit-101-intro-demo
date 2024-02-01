@@ -26,7 +26,9 @@ def main():
 
     # Get the jobs from Glassdoor
     print(f"{Fore.RED} Getting jobs for {keyword} from Glassdoor...")
-    res = requests.get("https://www.glassdoor.com/Job/jobs.htm?sc.keyword=" + keyword)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    res = requests.get("https://www.glassdoor.com/Job/jobs.htm?sc.keyword=" + keyword, headers=headers)
     soup = BeautifulSoup(res.text, 'html.parser')
 
     scripts = soup.findAll('script')
